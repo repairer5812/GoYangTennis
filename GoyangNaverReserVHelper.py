@@ -143,13 +143,16 @@ def courtSearching():
                 for day in day_elements:
                     day_num_element = day.find_element(By.CLASS_NAME,"num")
                     day_num_text = day_num_element.text # 1~31까지 숫자 가져오기
+                    sevenDaysNum = date(thisYear,targetMonth,int(day_num_text)).weekday()
+                    if days[sevenDaysNum+1][1].get() == False:
+                        continue
                     # day 색이 회색 (hex = e4e4e4 / rgba = (228, 228, 228, 1))이 아닐때 로직 시행
                     if day_num_element.value_of_css_property('color') != "rgba(228, 228, 228, 1)":
                         print(day_num_text, "일 확인 중..")
                         # 일자 클릭
                         day.click()
                         # 일자 클릭 후 time list 를 찾는데 시간이 걸리기 때문에 sleep
-                        time.sleep(1)
+                        time.sleep(0.5)
                         # 시간 list 추출
                         timesCandicate = wait.until(EC.presence_of_all_elements_located((By.XPATH,'//span[@class="box_info"]')))
                         # 매진정보 list 추출
@@ -157,7 +160,6 @@ def courtSearching():
                         # 코트명 + " " + 연도 + "/" + "월" + " 0번 코트" 필요
                         targetName = court[i][0] + "_" + str(thisYear) + "/" + str(targetMonth) + "_{0}번_코트".format(courtNum)
                         for timeCandidate, timeAvailable in zip(timesCandicate,timesAvailable):
-                            sevenDaysNum = date(thisYear,targetMonth,int(day_num_text)).weekday()
                             if days[sevenDaysNum+1][1].get() == True and timeAvailable.text != "매진":
                                 # 주말
                                 if date(thisYear,targetMonth,int(day_num_text)).weekday() >= 5:
@@ -180,6 +182,8 @@ def courtSearching():
                 # 1일부터 말일까지 검색 하면 뒤로 가기 누르기
                 driver.back()
     driver.quit()
+    notification.message = "코트 검색이 끝났습니다."
+    notification.send()
 
 def reservHelper(courtValue,timeValue,address):
     executeChrome()

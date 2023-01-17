@@ -120,7 +120,6 @@ def CommandConditionCheck1():
         commandCounter += 1
     
     if commandCounter == 4:
-        # messagebox.showerror("Error", "아직 개발중입니다.")
         courtSearching()
         
 
