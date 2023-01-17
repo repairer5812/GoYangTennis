@@ -13,10 +13,15 @@ f10 -> 결제 자동입력
 3. 즐겨찾기에 고양시 코트를 북마크바에 달아주세요.
 
 targetCourt1 = 'https://booking.naver.com/booking/12/bizes/714375' # 성라
+
 targetCourt2 = 'https://booking.naver.com/booking/12/bizes/708062' # 대화
+
 targetCourt3 = 'https://booking.naver.com/booking/12/bizes/714381' # 토당
+
 targetCourt4 = 'https://booking.naver.com/booking/12/bizes/714379' # 충장
+
 targetCourt5 = 'https://booking.naver.com/booking/12/bizes/714374' # 화정
+
 targetCourt6 = 'https://booking.naver.com/booking/12/bizes/714348' # 중산
 
 오류제보 repairer5812@naver.com
