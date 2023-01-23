@@ -201,69 +201,76 @@ def reservHelper(courtValue,timeValue,address):
                         timeSelection = driver.find_element(By.XPATH,"//span[contains(text(),'{0}:00')]".format(timeDic[timeValue][0]))
                         if timeSelection.value_of_css_property('color') != "rgba(187, 187, 187, 1)":
                             timeSelection.click()
-                            nextSelection = wait.until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'다음단계')]")))
+                            nextSelection =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'다음단계')]")))
                             nextSelection.click()
                     except:
                         print("{0}시 선택불가".format(timeDic[timeValue][0]))
                 case "f9":
                     print("정보입력")
-                    # 가격 고르기
-                    priceSelection = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[1]/bk-qty-slot/div/div/div[2]/div/div/a[2]')))
-                    priceSelection.click()
-                    # 지역주소 넣기
-                    addressSelection = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="extra0"]')))
-                    addressSelection.click()
-                    clipboard.copy(address)
-                    # Ctrl + V 하기
-                    ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
-                    # 선택해주세요 누르기
-                    aggrementSelection1 = wait.until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'선택해주세요')]")))
-                    aggrementSelection1.click()
-                    # time.sleep(1)
-                    # 동의합니다. 누르기
-                    aggrementSelection2 = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[2]/div[1]/bk-extra-input/div/div/form/div[2]/div/div/div/div/div[2]/div/ul/li[2]')))
-                    aggrementSelection2.click()
-                    # 결제화면 넘어가기
-                    nextSelection2 = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[2]/bk-submit/div/button')))
-                    nextSelection2.click()
+                    try:
+                        # 가격 고르기
+                        priceSelection =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[1]/bk-qty-slot/div/div/div[2]/div/div/a[2]')))
+                        priceSelection.click()
+                        # 지역주소 넣기
+                        addressSelection =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="extra0"]')))
+                        addressSelection.click()
+                        clipboard.copy(address)
+                        # Ctrl + V 하기
+                        ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
+                        # 선택해주세요 누르기
+                        aggrementSelection1 =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'선택해주세요')]")))
+                        aggrementSelection1.click()
+                        # time.sleep(1)
+                        # 동의합니다. 누르기
+                        aggrementSelection2 =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[2]/div[1]/bk-extra-input/div/div/form/div[2]/div/div/div/div/div[2]/div/ul/li[2]')))
+                        aggrementSelection2.click()
+                        # 결제화면 넘어가기
+                        nextSelection2 =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="container"]/bk-slot-ticket/bk-slot-final/div/div[2]/bk-submit/div/button')))
+                        nextSelection2.click()
+                    except:
+                        print("f9 실패")
                 case "f10":
                     print("결재하기")
-                    # 항상 전액사용 체크해제
-                    NpayMoney = driver.find_element(By.CLASS_NAME,'Checkout_checkbox-mark__3i-t1')
-                    try: 
-                        NpayMoney.click()
-                    except NoSuchElementException:
-                        pass
-                    # 일반 결제 누르기
-                    generalPayment = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/ul/li[4]/div/span/span')))
-                    generalPayment.click()
-                    # 나중에 결제하기 누르기
-                    payLater = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/ul/li[4]/ul/li[2]/span[1]/span')))
-                    payLater.click()
-                    # 은행 종류 고르기
-                    bankSelectMenu = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="bankCodeList"]/div/div')))
-                    bankSelectMenu.click()
-                    # 하나은행
-                    bankSelect = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="bankCodeList"]/div/div[2]/div/ul/li[6]')))
-                    bankSelect.click()
-                    
-                    # 본인계좌로 환불
-                    # accountSelect = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[1]/div[2]/div[2]/div/ul/li[1]/span/span')))
-                    # accountSelect.click()
-                    
-                    # 환불정산액 적립
-                    refundSelect = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[1]/div[2]/div[2]/div/ul/li[2]/span/span')))
-                    refundSelect.click()
+                    try:
 
-                    # 현금영수증
-                    CashReceipt = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[2]/div/ul/li[1]/span/span')))
-                    CashReceipt.click()
-                    #최종 결제 선택하기
-                    finalclick = wait.until(EC.presence_of_element_located((By.XPATH,"//button[contains(text(),'주문하기')]")))
-                    finalclick.click()
-                    reservationVerification = wait.until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'입금 대기')]")))
-                    print("결제완료")
-                    driver.get(targetCourt)
+                        # 항상 전액사용 체크해제
+                        NpayMoney = driver.find_element(By.CLASS_NAME,'Checkout_checkbox-mark__3i-t1')
+                        try: 
+                            NpayMoney.click()
+                        except NoSuchElementException:
+                            pass
+                        # 일반 결제 누르기
+                        generalPayment =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/ul/li[4]/div/span/span')))
+                        generalPayment.click()
+                        # 나중에 결제하기 누르기
+                        payLater =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/ul/li[4]/ul/li[2]/span[1]/span')))
+                        payLater.click()
+                        # 은행 종류 고르기
+                        bankSelectMenu =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="bankCodeList"]/div/div')))
+                        bankSelectMenu.click()
+                        # 하나은행
+                        bankSelect =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="bankCodeList"]/div/div[2]/div/ul/li[6]')))
+                        bankSelect.click()
+                        
+                        # 본인계좌로 환불
+                        # accountSelect = wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[1]/div[2]/div[2]/div/ul/li[1]/span/span')))
+                        # accountSelect.click()
+                        
+                        # 환불정산액 적립
+                        refundSelect =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[1]/div[2]/div[2]/div/ul/li[2]/span/span')))
+                        refundSelect.click()
+
+                        # 현금영수증
+                        CashReceipt =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,'//*[@id="PAYMENT_WRAP"]/div[1]/div[1]/div[2]/div/ul/li[1]/span/span')))
+                        CashReceipt.click()
+                        #최종 결제 선택하기
+                        finalclick =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,"//button[contains(text(),'주문하기')]")))
+                        finalclick.click()
+                        reservationVerification =  WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'입금 대기')]")))
+                        print("결제완료")
+                        driver.get(targetCourt)
+                    except:
+                        print("f10 실패")
                 case "f4":
                     driver.get(targetCourt)
         except NoSuchWindowException:
