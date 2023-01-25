@@ -146,7 +146,7 @@ def courtSearching():
             for courtNum in range(1,court[i][3]+1): # 코트 갯수만큼 반복
                 try:
                     try:
-                        courtSelection = WebDriverWait(driver,1).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
+                        courtSelection = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
                         print(courtSelection.text)
                         courtSelection.click()
                     except:
@@ -159,7 +159,7 @@ def courtSearching():
                         nextPage = WebDriverWait(driver,5).until(EC.presence_of_element_located((By.XPATH,'/html/body/app/div[2]/div[2]/div/div/div[2]/div[2]/a[2]/i')))
                         nextPage.click()
                         try:
-                            courtSelection = WebDriverWait(driver,1).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
+                            courtSelection = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
                             print(courtSelection.text)
                             courtSelection.click()
                         except:
@@ -214,9 +214,9 @@ def courtSearching():
                         pass
                 # 1일부터 말일까지 검색 하면 뒤로 가기 누르기
                 driver.back()
-    driver.quit()
     notification.message = "코트 검색이 끝났습니다."
     notification.send()
+    driver.quit()
 
 
 def reservHelper(courtValue,timeValue,address):
