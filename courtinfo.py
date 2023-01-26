@@ -146,28 +146,28 @@ def courtSearching():
             for courtNum in range(1,court[i][3]+1): # 코트 갯수만큼 반복
                 try:
                     try:
-                        courtSelection = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
-                        print(courtSelection.text)
-                        courtSelection.click()
+                        courtSelection1 = WebDriverWait(driver,0.5).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
+                        print(courtSelection1.text)
+                        courtSelection1.click()
                     except:
-                        courtSelection = WebDriverWait(driver,30).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,searchingTargetMonth))))
-                        print(courtSelection.text)
-                        courtSelection.click()
+                        courtSelection2 = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,searchingTargetMonth))))
+                        print(courtSelection2.text)
+                        courtSelection2.click()
                 except:
                     try:
                         # 다음페이지에 있는 경우 > 버튼 누르기
-                        nextPage = WebDriverWait(driver,5).until(EC.presence_of_element_located((By.XPATH,'/html/body/app/div[2]/div[2]/div/div/div[2]/div[2]/a[2]/i')))
+                        nextPage = WebDriverWait(driver,1).until(EC.presence_of_element_located((By.XPATH,'/html/body/app/div[2]/div[2]/div/div/div[2]/div[2]/a[2]/i')))
                         nextPage.click()
                         try:
-                            courtSelection = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
-                            print(courtSelection.text)
-                            courtSelection.click()
+                            courtSelection3 = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,targetMonth))))
+                            print(courtSelection3.text)
+                            courtSelection3.click()
                         except:
-                            courtSelection = WebDriverWait(driver,30).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,searchingTargetMonth))))
-                            print(courtSelection.text)
-                            courtSelection.click()
+                            courtSelection4 = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH,"//span[contains(text(),'{0}번 {1}월')]".format(courtNum,searchingTargetMonth))))
+                            print(courtSelection4.text)
+                            courtSelection4.click()
                     except:
-                        print(searchingTargetMonth)         
+                        print("{0}번 {1}월 코트를 찾지 못했습니다.".format(courtNum,searchingTargetMonth))         
                 # 달력에 있는 날짜들 가져오기
                 day_elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME,"calendar-date")))
                 # 일자 별 로직 시행
@@ -185,7 +185,7 @@ def courtSearching():
                         # 일자 클릭
                         day.click()
                         # 일자 클릭 후 time list 를 찾는데 시간이 걸리기 때문에 sleep
-                        time.sleep(0.5)
+                        time.sleep(0.3)
                         # 시간 list 추출
                         timesCandicate = wait.until(EC.presence_of_all_elements_located((By.XPATH,'//span[@class="box_info"]')))
                         # 매진정보 list 추출
