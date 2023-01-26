@@ -1,4 +1,4 @@
-('c:\\Users\\KCMH\\Desktop\\GoYangTennis\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\KCMH\\Desktop\\GoYangTennis\\build\\main\\PYZ-00.pyz',
  [('pkg_resources',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\site-packages\\pkg_resources\\__init__.py',
@@ -869,10 +869,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\__init__.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('stringprep',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\stringprep.py',
@@ -901,8 +897,12 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\_py_abc.py',
    'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.2544.0_x64__qbz5n2kfra8p0\\lib\\tracemalloc.py',
+   'PYMODULE'),
   ('courtinfo',
-   'c:\\Users\\KCMH\\Desktop\\GoYangTennis\\courtinfo.py',
+   'C:\\Users\\KCMH\\Desktop\\GoYangTennis\\courtinfo.py',
    'PYMODULE'),
   ('dateutil.relativedelta',
    'C:\\Users\\KCMH\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages\\dateutil\\relativedelta.py',
