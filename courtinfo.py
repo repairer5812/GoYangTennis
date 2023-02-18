@@ -110,7 +110,8 @@ def seleniumChrome():
     options.add_experimental_option("excludeSwitches", ["enable-logging"]) #usb 에러 메세지 해결
     # options.add_argument('headless') # 창 실행하지 않고 프로그램 진행
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    wait = WebDriverWait(driver, 10)
+    driver.implicitly_wait(5)
+    wait = WebDriverWait(driver, 30)
     return driver, wait
 
 
@@ -185,7 +186,7 @@ def courtSearching():
                         # 일자 클릭
                         day.click()
                         # 일자 클릭 후 time list 를 찾는데 시간이 걸리기 때문에 sleep
-                        time.sleep(0.3)
+                        time.sleep(0.7)
                         # 시간 list 추출
                         timesCandicate = wait.until(EC.presence_of_all_elements_located((By.XPATH,'//span[@class="box_info"]')))
                         # 매진정보 list 추출
